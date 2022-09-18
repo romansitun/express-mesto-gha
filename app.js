@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-require('dotenv').config();
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('./middlewares/cors');
 const userRouter = require('./routes/users');
@@ -18,7 +18,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cors);
 app.use(cookieParser());
-console.log(process.env);
+
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(express.json());
@@ -62,4 +62,5 @@ app.use(error);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
+  console.log(process.env);
 });
